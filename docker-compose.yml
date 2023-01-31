@@ -34,6 +34,10 @@ services:
       - PGPORT=5432
 
   client:
+  # the below environment section is to avoid WebSocket error (connection refused)
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
     build:
       dockerfile: Dockerfile.dev
       context: ./client
